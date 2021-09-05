@@ -46,3 +46,12 @@ Maintenance activities
 
 Easy to maintain => Easy to CHANGE
 
+
+Reactive (Dumb) X Proactive (Knoweledge)
+
+class Employee{
+    private int id;
+    public int getId(){
+        return this.id
+    }
+}
