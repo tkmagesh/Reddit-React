@@ -1,0 +1,48 @@
+
+Day-01 Agenda 
+1. Why React?
+
+Rich Internet Applications
+
+Much Better Infrastructure
+Browser
+    Http Client
+    Render HTML Documents
+
+    Virtual OS
+
+        Data Storage
+            LocalStorage
+            SessionStorage
+            IndexedDB
+
+        Multithreading capabilities
+            Web Workers
+
+        Device Access
+            Geolocation
+
+        Sockets
+            Server Sent Events
+            Web Sockets
+
+An application that runs in the browser 
+    - handling user interation
+    - view generation
+    - state maintained
+
+Problem:
+    Salary Calculator
+        salary = basic + hra + da - tax(%)
+
+Zen Coding
+    
+
+Maintenance activities
+    - Fixing Bugs
+    - Adding new features
+    - Updating existing features
+    - Removing dead features
+
+Easy to maintain => Easy to CHANGE
+
