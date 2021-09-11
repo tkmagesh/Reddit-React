@@ -60,3 +60,7 @@ Incremental Approach
 
 
 All in one Approach
+
+React Component = Encapsulation of Presentation + UI Behavior + UI State
+    Using the ES6 class syntax
+    Using a function (functional components)
