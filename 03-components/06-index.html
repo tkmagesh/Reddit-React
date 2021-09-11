@@ -1,0 +1,70 @@
+<!-- 
+    Creating elemements dynamically
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Products</title>
+     <script src="react.development.js"></script>
+     <script src="react-dom.development.js"></script>
+     <script src="babel.min.js"></script>
+     <script type="text/babel">
+        /* 
+            Improve this example with the following usecases:
+                1. Clear the text box once the new product is added
+                2. The button should be disabled when the text box is empty
+                    OR
+                   Highlight the textbox with a red color border and display an error messaage if the button is clicked with the text box empty
+                3. Add a 'remove' button to each of the product and remove the product when the remove button is clicked
+                4. if the productNames array is empty display a message 'Product list is empty!'
+         */
+        class Products extends React.Component {
+            state = {
+                productNames : [],
+                newProductName : ''
+            };
+            
+            onBtnAddNewClick = () => {
+                const { newProductName, productNames } = this.state;
+                this.setState({ productNames : [...productNames, newProductName] });
+            };
+
+            render(){
+                const { productNames } = this.state;
+                /* 
+                const productItems = [];
+                for(let index = 0; index < productNames.length; index++){
+                    const productName = productNames[index];
+                    const productItem = (<li key={index}>{productName}</li>);
+                    productItems.push(productItem);
+                } 
+                */
+                const productItems = productNames.map((productName, index) => (<li key={index}>{productName}</li>));
+
+                return(
+                    <div>
+                        <h3>Products</h3>
+                        <hr/>
+                        <label htmlFor="">Product Name : </label>
+                        <input type ="text" onChange={ evt => this.setState({newProductName : evt.target.value}) }/>
+                        <button onClick={this.onBtnAddNewClick}>Add New</button>
+                        <ul>
+                            {productItems}
+                        </ul>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<Products/>, document.getElementById('root'));
+     </script>
+ </head>
+ <body>
+     <div id="root">
+         
+     </div>
+ </body>
+ </html>
