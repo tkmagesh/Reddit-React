@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+        class CalculatorModel {
+            _data = {
+                n1: 0,
+                n2: 0,
+                result: 0
+            }
+            _subscribers = [];
+
+            set(key, value) {
+                this._data[key] = value;
+                this.triggerChange();
+            }
+            get(key){
+                return this._data[key];
+            }
+            triggerChange() {
+                this._subscribers.forEach(fn => fn());
+            }
+            subscribe(fn) {
+                this._subscribers.push(fn);
+            }
+
+            add(){
+                this.set('result', this.get('n1') + this.get('n2'));
+            }
+
+            subtract() {
+                this.set('result', this.get('n1') - this.get('n2'));
+            }
+
+            multiply() {
+                this.set('result', this.get('n1') * this.get('n2'));
+            }
+
+            divide() {
+                this.set('result', this.get('n1') / this.get('n2'));
+            }
+        }
+
+        class Calculator extends React.Component {
+            render(){
+                const { model } = this.props;
+                return(
+                    <div>
+                        <h3>Calculator</h3>
+                        <div>
+                            <input type="number" onChange={ evt => model.set('n1', parseInt(evt.target.value))} />
+                            <input type="number" onChange={ evt => model.set('n2', parseInt(evt.target.value))}/>
+                        </div>
+                        <div>
+                            <input type="button" value="Add" onClick={ () => model.add()}/>
+                            <input type="button" value="Subtract" onClick={() => model.subtract()}/>
+                            <input type="button" value="Multiply" onClick={() => model.multiply()}/>
+                            <input type="button" value="Divide" onClick={() => model.divide()}/>
+                        </div>
+                        <div>[{model.get('result')}]</div>
+                    </div>
+                )
+            }
+        }
+
+        const model = new CalculatorModel();
+
+        function renderCalculator(){
+            ReactDOM.render(
+                <Calculator model={model} />, 
+                document.getElementById('root')
+            );
+        }
+        renderCalculator();
+        model.subscribe(renderCalculator);
+    </script>
+</head>
+<body>
+    <div id="root">
+        
+    </div>
+</body>
+</html>
